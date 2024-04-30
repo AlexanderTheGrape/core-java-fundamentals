@@ -1,6 +1,11 @@
+package reflection;
+
+import lombok.EqualsAndHashCode;
+
 import java.lang.Cloneable;
 
-abstract class Person {
+@EqualsAndHashCode
+abstract class Person implements Cloneable {
 
 	private String name;
 	

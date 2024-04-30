@@ -1,5 +1,9 @@
+//import lombok.EqualsAndHashCode;
+package reflection;
 
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 class Employee extends Person {
 	
 	private int salary;
@@ -26,6 +30,7 @@ class Employee extends Person {
 		Class cl = someDude.getClass();
 		System.out.println(someDude.getClass().getName());
 		Object secondDude = null;
+		Employee thirdDude = null;
 		try {
 			Class unknownClassType = Class.forName("java.lang.Math");
 			System.out.println(unknownClassType);
@@ -34,17 +39,18 @@ class Employee extends Person {
 		}
 		
 		try {
-			secondDude = someDude.clone(); // TODO FIX - FAILS DUE TO NOT IMPLEMENTING THE CLONEABLE INTERFACE. SEE OBJECT
-			//secondDude = (Employee)someDude.clone();
+			secondDude = someDude.clone();
+			thirdDude = (Employee)someDude.clone();
 		} catch (CloneNotSupportedException e) {
 			System.out.println(e);
 		}
 		
-		if (secondDude != null) {
-			assert(secondDude == someDude);
-			System.out.println(secondDude == someDude);
+		if (secondDude != null && thirdDude != null) {
+			System.out.println("Is secondDude (cloned employee) equal to someDude, using ==? " + (secondDude == someDude));
+			System.out.println("Is secondDude equal to someDude, using .equals()? " + secondDude.equals(someDude));
+			System.out.println("Is thirdDude (cloned employee, casted as employee) equal to someDude, using .equals()? " + thirdDude.equals(someDude));
+			System.out.println("thirdDude canonical class name is: " + thirdDude.getClass().getCanonicalName());
 		}
-		System.out.println(secondDude == someDude);
 		//System.out.println(some.getSalary() + " dollars earned by " + someDude.getName());
 		
 		
