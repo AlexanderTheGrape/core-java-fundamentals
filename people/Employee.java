@@ -1,6 +1,8 @@
+import java.lang.NullPointerException;
+import java.lang.ClassCastException;
 
 
-class Employee extends Person {
+class Employee extends Person implements Cloneable, Comparable {
 	
 	private int salary;
 	
@@ -15,6 +17,13 @@ class Employee extends Person {
 	
 	public int getSalary() {
 		return salary;
+	}
+	
+	public int compareTo(Object other) throws ClassCastException, NullPointerException {
+		if (other == null) throw new NullPointerException();
+		if (other.getClass().isInstance(Employee.class)) {
+			return this.getSalary() > ((Employee)other).getSalary() ? 1 : -1;
+		} else throw new ClassCastException();
 	}
 
 	public static void main(String[] args) {
@@ -47,7 +56,8 @@ class Employee extends Person {
 		System.out.println(secondDude == someDude);
 		//System.out.println(some.getSalary() + " dollars earned by " + someDude.getName());
 		
-		
+		System.out.println("Comparing with compareTo():");
+		System.out.println(someDude.compareTo(secondDude));
 	}
 	
 }
