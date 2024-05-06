@@ -22,7 +22,7 @@ class Employee extends Person implements Cloneable, Comparable {
 	public int compareTo(Object other) throws ClassCastException, NullPointerException {
 		if (other == null) throw new NullPointerException();
 		if (other.getClass().isInstance(Employee.class)) {
-			return this.getSalary() > ((Employee)other).getSalary() ? 1 : -1;
+			return (this.getSalary() > ((Employee)other).getSalary()) ? 1 : -1;
 		} else throw new ClassCastException();
 	}
 
