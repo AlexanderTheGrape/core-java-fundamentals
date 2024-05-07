@@ -20,14 +20,26 @@ class Employee extends Person implements Cloneable, Comparable {
 	}
 	
 	public int compareTo(Object other) throws ClassCastException, NullPointerException {
+		//System.out.println("class of other is: " + other.getClass().toString());
+		//System.out.println(" is it an instance? " + Employee.class.isInstance(other));
+		//System.out.println(" salary 1 is: " + this.getSalary());
+		//System.out.println(" salary 1 is: " + ((Employee)other).getSalary());
+		
 		if (other == null) throw new NullPointerException();
-		if (other.getClass().isInstance(Employee.class)) {
-			return (this.getSalary() > ((Employee)other).getSalary()) ? 1 : -1;
+		if (Employee.class.isInstance(other)) {	
+			if (this.getSalary() > ((Employee)other).getSalary()) {
+				return 1;
+			} else if (this.getSalary() < ((Employee)other).getSalary()) {
+				return -1;
+			} else {
+				return 0;
+			}
 		} else throw new ClassCastException();
 	}
 
 	public static void main(String[] args) {
 		Employee someDude = new Employee("Kowabunga", 50000);
+		Employee employee = new Employee("Kowabunga", 50001);
 		System.out.println(someDude.getName());
 		System.out.println(someDude.getDescription());
 		
@@ -57,8 +69,9 @@ class Employee extends Person implements Cloneable, Comparable {
 		//System.out.println(some.getSalary() + " dollars earned by " + someDude.getName());
 		
 		System.out.println("Comparing with compareTo():");
-		System.out.println(someDude.compareTo(secondDude));
+		System.out.println(someDude.compareTo(employee));
+		System.out.println(employee.compareTo(employee));
+		System.out.println(employee.compareTo(someDude));
 	}
-	
 }
 

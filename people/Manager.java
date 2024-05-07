@@ -18,4 +18,10 @@ sealed class Manager extends Employee
 		return bonus;
 	}
 	
+	public static void main(String[] args) {
+		Employee employee = new Employee("Kowabunga", 50000);
+		Manager bigMan = new Manager("hello", 40000, 10000);
+		System.out.println(bigMan.compareTo(employee));
+	}
+	
 }
