@@ -26,7 +26,8 @@ class Employee extends Person implements Cloneable, Comparable {
 		//System.out.println(" salary 1 is: " + ((Employee)other).getSalary());
 		
 		if (other == null) throw new NullPointerException();
-		if (Employee.class.isInstance(other)) {	
+		//if (Employee.class.isInstance(other)) {	
+		if (other instanceof Employee) {	
 			if (this.getSalary() > ((Employee)other).getSalary()) {
 				return 1;
 			} else if (this.getSalary() < ((Employee)other).getSalary()) {
