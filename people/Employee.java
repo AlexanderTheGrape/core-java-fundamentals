@@ -2,12 +2,14 @@ import java.lang.NullPointerException;
 import java.lang.ClassCastException;
 
 
-class Employee extends Person implements Cloneable, Comparable {
+class Employee extends Person implements Cloneable, Comparable, Sackable {
 	
 	private int salary;
+	private boolean employed;
 	
 	public Employee(String name, int salary) {
 		super(name);
+		employed = true;
 		this.salary = salary;
 	}
 	
@@ -36,6 +38,15 @@ class Employee extends Person implements Cloneable, Comparable {
 				return 0;
 			}
 		} else throw new ClassCastException();
+	}
+	
+	public boolean isSackable() {
+		return employed;
+	}
+	
+	public void sackEmployee() {
+		salary = 0;
+		employed = false;
 	}
 
 	public static void main(String[] args) {
@@ -73,6 +84,14 @@ class Employee extends Person implements Cloneable, Comparable {
 		System.out.println(someDude.compareTo(employee));
 		System.out.println(employee.compareTo(employee));
 		System.out.println(employee.compareTo(someDude));
+		
+		System.out.println(employee.isSackable());
+		employee.sackEmployee();
+		System.out.println(employee.isSackable());
+		Sackable.about();
+		System.out.println(employee.shouldBeSacked());
+		
+		
 	}
 }
 
