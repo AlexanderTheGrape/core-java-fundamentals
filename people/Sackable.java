@@ -4,7 +4,9 @@ interface Sackable {
 	
 	boolean isSackable();
 	
-	void sackEmployee() throws Exception;
+	default void sackEmployee() {
+		throw new UnsupportedOperationException();
+	}
 	
 	static void about() {
 		System.out.println("I am an interface to help determine if an employee can be sacked");
