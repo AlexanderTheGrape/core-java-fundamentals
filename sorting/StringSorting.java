@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.Arrays;
+import java.util.ArrayList;
 
 class StringSorting
 		implements Comparator<String> {
@@ -26,6 +27,14 @@ class StringSorting
 		System.out.println(Arrays.asList(strArr3).toString());
 		Arrays.sort(strArr4, comparator);
 		System.out.println(Arrays.asList(strArr4).toString());
+		
+		strArr = new String[]{"ab", "bbb", "cb"};
+		Arrays.sort(strArr, (s1, s2) -> s1.length() - s2.length());
+		System.out.println(Arrays.asList(strArr).toString());
+		
+		ArrayList arrList = new ArrayList<>(Arrays.asList(strArr));
+		arrList.removeIf(e -> e == "ab");
+		System.out.println(arrList);
 	}
 	
 }
