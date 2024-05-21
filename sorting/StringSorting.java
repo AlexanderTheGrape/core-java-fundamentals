@@ -1,6 +1,7 @@
 import java.util.Comparator;
 import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Objects;
 
 class StringSorting
 		implements Comparator<String> {
@@ -34,6 +35,11 @@ class StringSorting
 		
 		ArrayList arrList = new ArrayList<>(Arrays.asList(strArr));
 		arrList.removeIf(e -> e == "ab");
+		System.out.println(arrList);
+		
+		strArr = new String[]{"ab", null, "cb"};
+		arrList = new ArrayList<>(Arrays.asList(strArr));
+		arrList.removeIf(Objects::isNull); // Class::instanceMethod
 		System.out.println(arrList);
 	}
 	
