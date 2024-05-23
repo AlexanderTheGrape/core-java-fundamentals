@@ -16,15 +16,21 @@ class TimePrinter implements ActionListener {
 		Timer t = new Timer(1000, listener);
 		//t.start();
 		
+		// Using lambda
 		Timer t2 = new Timer(1000, event -> {
 			System.out.println(" At the tone, the time is " + Instant.ofEpochMilli( event.getWhen()));
 			Toolkit.getDefaultToolkit().beep();
 		});
-		t2.start();
+		//t2.start();
+		
+		// Equivalent method reference
+		//Timer t3 = new Timer(1000, System.out::println);
+		TimePrinter timePrinter = new TimePrinter();
+		Timer t3 = new Timer(1000, timePrinter::actionPerformed);
+		t3.start();
 		
 		// keep program running until the user selects "OK"
 		JOptionPane.showMessageDialog(null, "Quit program?");
-		
 		System.exit(0);
 	}
 }
