@@ -14,17 +14,25 @@ class TalkingClock {
 		timePrinter = new TimePrinter();
 	}
 	
-	public class TimePrinter implements ActionListener {
-		public void actionPerformed(ActionEvent event) {
-			System.out.println(" At the tone, the time is " + Instant.ofEpochMilli( event.getWhen()));
-			if (TalkingClock.this.shouldTalk) Toolkit.getDefaultToolkit().beep();
+	void start() {
+		class TimePrinter implements ActionListener {
+			public void actionPerformed(ActionEvent event) {
+				System.out.println(" At the tone, the time is " + Instant.ofEpochMilli( event.getWhen()));
+				if (TalkingClock.this.shouldTalk) Toolkit.getDefaultToolkit().beep();
+			}
 		}
+		
+		TimePrinter timePrinter = new TimePrinter();
+		Timer timer = new Timer(1000, timePrinter::actionPerformed);
+		timer.start();
 	}
 	
 	public static void main(String[] args) {
 		TalkingClock talkingClock = new TalkingClock(true);
-		Timer t3 = new Timer(1000, talkingClock.timePrinter::actionPerformed);
-		t3.start();
+		//Timer t3 = new Timer(1000, talkingClock.timePrinter::actionPerformed);
+		//t3.start();
+		
+		talkingClock.start();
 		
 		// keep program running until the user selects "OK"
 		JOptionPane.showMessageDialog(null, "Quit program?");
