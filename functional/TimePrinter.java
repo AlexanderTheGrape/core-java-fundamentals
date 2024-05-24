@@ -11,6 +11,8 @@ class TimePrinter implements ActionListener {
 		Toolkit.getDefaultToolkit().beep();
 	}
 	
+	public int createDelayNum() { return 1000; }
+	
 	public static void main(String[] args) {
 		var listener = new TimePrinter();
 		Timer t = new Timer(1000, listener);
